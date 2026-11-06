@@ -1,0 +1,100 @@
+:root {
+  --bg: #eaf0f4;
+  --surface: #ffffff;
+  --ink: #12263a;
+  --muted: #5b6b7b;
+  --line: #d3dde6;
+  --accent: #0e7c86;
+  --accent-ink: #ffffff;
+  --danger: #b42318;
+  --focus: #f2a900;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --bg: #0d1822;
+  --surface: #14232f;
+  --ink: #e6eef5;
+  --muted: #92a4b4;
+  --line: #243746;
+  --accent: #3cc3cd;
+  --accent-ink: #062126;
+  --danger: #ff8a7a;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+.app {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 32px 20px 56px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "hero hero" "timer todo" "links todo";
+  align-items: start;
+}
+.hero { grid-area: hero; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 8px 4px 12px; }
+.timer { grid-area: timer; }
+.todo { grid-area: todo; }
+.links { grid-area: links; }
+
+.date { margin: 0; color: var(--muted); font-weight: 500; }
+.clock { margin: 0; font-size: clamp(3.5rem, 11vw, 6.5rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; font-variant-numeric: tabular-nums; }
+.greeting { margin: 10px 0 14px; font-size: 1.5rem; font-weight: 700; }
+.name-field { display: inline-flex; align-items: center; gap: 10px; font-size: 0.9rem; color: var(--muted); }
+.name-field input { width: 180px; }
+
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+h2 { margin: 0 0 14px; font-size: 1.1rem; }
+.muted { color: var(--muted); font-size: 0.9rem; margin: 0; }
+
+.timer-display { margin: 4px 0; font-size: 4rem; font-weight: 800; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+
+input[type="text"] {
+  font: inherit; color: var(--ink); background: var(--bg);
+  border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-width: 0;
+}
+.btn {
+  font: inherit; font-weight: 700; cursor: pointer; color: var(--ink); background: transparent;
+  border: 1px solid var(--line); border-radius: 10px; padding: 10px 16px;
+}
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn.ghost { white-space: nowrap; }
+.btn.small { padding: 6px 10px; font-size: 0.85rem; }
+.btn.danger { color: var(--danger); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+.add-row { margin-top: 0; flex-wrap: nowrap; }
+.add-row input { flex: 1; }
+.message { min-height: 1.3em; margin: 8px 0 0; font-size: 0.88rem; color: var(--danger); }
+
+.task-list { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 8px; }
+.task { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; }
+.task input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent); flex: none; }
+.task-text { flex: 1; word-break: break-word; }
+.task.done .task-text { text-decoration: line-through; color: var(--muted); }
+.task-edit { flex: 1; }
+.task-actions { display: flex; gap: 6px; flex: none; }
+.empty { padding: 8px 0; }
+
+.link-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.link-chip { display: inline-flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.link-chip a { color: var(--ink); text-decoration: none; font-weight: 700; padding: 8px 12px; }
+.link-chip a:hover { background: var(--accent); color: var(--accent-ink); }
+.link-chip button { font: inherit; border: 0; border-left: 1px solid var(--line); background: transparent; color: var(--muted); cursor: pointer; padding: 0 10px; }
+.link-chip button:hover { color: var(--danger); }
+.link-form input { flex: 1 1 110px; }
+
+@media (max-width: 760px) {
+  .app { grid-template-columns: 1fr; grid-template-areas: "hero" "timer" "todo" "links"; }
+  .name-field input { width: 140px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
